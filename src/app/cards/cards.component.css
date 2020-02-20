@@ -1,0 +1,178 @@
+/* background color for main part of app */
+.mat-sidenav-content{
+  background-color: rgb(233, 233, 233);
+ }
+
+
+/* color for the mat badge */
+.mat-badge-content {
+  background: rgb(114, 114, 114);
+  color: rgb(255, 255, 255);
+}
+
+/* set hover for cards, can disable hover for certain cards by adding class="nohover" */
+/*cursor will appear over the card with pointer*/
+.mat-card:not(.nohover):hover{
+  background-color: rgb(209, 209, 209);
+  cursor: pointer;
+}
+
+/* sets margins for center cards */
+.margin{
+  margin-top: 75px; /*margin between first card and top of page*/
+}
+
+/*CSS for the center event cards. */
+.card{
+  margin: auto; /*centers the cards on the page*/
+  margin-bottom: 25px; /*sets spacing between top and bottom of cards*/
+  width: 275px; /*sets the width of the event cards. use %,the cards will shrink in the side nav bars toggle open. can prevent cards from shrinking by settings width using px.*/
+ }
+
+/* retrieves images to show on card for particular sport  */
+.baseball {
+    background-image: url('https://it6203.herokuapp.com/assets/baseball.png');
+    background-size: cover;
+  }
+.golf {
+    background-image: url('https://it6203.herokuapp.com/assets/golf.png');
+    background-size: cover;
+  }
+.tennis {
+    background-image: url('https://it6203.herokuapp.com/assets/tennis.png');
+    background-size: cover;
+  }
+.basketball {
+    background-image: url('https://it6203.herokuapp.com/assets/basketball.png');
+    background-size: cover;
+  } 
+.football {
+    background-image: url('https://it6203.herokuapp.com/assets/football.png');
+    background-size: cover;
+  } 
+
+.soccer {
+    background-image: url('https://it6203.herokuapp.com/assets/soccer.png');
+    background-size: cover;
+  }
+
+.frisbee {
+    background-image: url('https://it6203.herokuapp.com/assets/frisbee.png');
+    background-size: cover;
+  }
+
+.hockey {
+    background-image: url('https://it6203.herokuapp.com/assets/hockey.png');
+    background-size: cover;
+  } 
+
+/* card that contains date/time */
+.side-card1 {
+  /* overflow: hidden; */
+  text-align: center;
+  margin: 0 auto; /*centers the card */
+  width: 180px;
+  margin-top: 5vh;
+}
+/* game address card */
+.side-card2 {
+  /* overflow: hidden; */
+  text-align: center;
+  margin: 0 auto; /*centers the card */
+  width: 180px;
+  margin-top: 7vh;
+}
+
+/* css for the list of players changing the width will make the scrollbar appear*/
+/* .fixed-position-players {
+  position: fixed;
+  height: 100%;
+  width: 25%;
+} */
+
+/* sets distance between names on players list */
+.mat-list-item{
+  max-height: 35px; 
+}
+
+/* container for join leave buttons */
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-top:10px;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+/* form for the usernmae to join or leave a game */
+.mat-form-field{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top:1.75vh; 
+}
+
+/* Displays itallic text on game address side card 'select game to receive address' */
+/* p.b {
+  font-style: italic;
+  opacity: 0.5;
+} */
+
+/* css for list of players. margin bottom is so the last name on the list is visible above the join form */
+.mat-list{
+  width: 90%; /*prevents a left-right scroll bar from appearing at the bottom of the page  */
+  margin-left:5%;
+  margin-bottom: 2%; /* helps to make last name on list visible. */
+  overflow: hidden; 
+}
+
+/* css for player names on the players list  */
+/* .mat-list-item{
+margin-left:5%; 
+width: 200px;
+} */
+
+.container-map{
+  height: 40%;
+  margin-top: 10vh; /* Can NOT use % for top margin. causes the size of item to flicker */
+  margin-left: 3%;
+  margin-right:3%;
+  box-shadow: 0px 0px 1px 1px rgb(141, 141, 141);
+ 
+}
+/* css for google map. agm-map is inside of 'container-map' */
+agm-map {
+  height: 100%;
+  width: 100%;
+}
+
+/* left side nav panel  */
+.sidenav-left{
+  margin-top: 50px; 
+  width:240px;
+  background-color: rgb(246, 246, 246)
+}
+
+/* sidenav panel with the player names. margin is 20vh from bottom to make room for the add delete update form */
+.sidenav-players{
+  margin-top: 50px; 
+  width: 240px;
+}
+/* list of player names */
+.players-card{
+  height: 70vh; 
+  overflow-y: auto; 
+  background-color: rgb(246, 246, 246); 
+  box-shadow: none;
+
+}
+/* form to add players */
+.add-player-card{
+  position: fixed; 
+  bottom:0; 
+  width: 240px; 
+  height: 15vh;
+  box-shadow: none;
+}
+

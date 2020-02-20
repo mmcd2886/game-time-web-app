@@ -1,0 +1,105 @@
+<!-- date/time card -->
+<div class="margin-top">
+<!-- hasBackDrop='false' prevents a backdrop from covering the main part of the page when the sidenav columns toggle open -->
+<mat-sidenav-container hasBackdrop="false">
+    <!-- left side drawer -->
+    <!-- mode='over' prevents the sidenav from moving around the center content when opening. the [(opened)] variable is defined in card.component.ts. change to opened = "true" below to have it start open 
+    fixedInViewPort='true' prevents the sidenav bars from scrolling with rest of page, Autofocus="false" prevents button from being highlighted when sidenav opens"  -->
+    <mat-sidenav #sidenav mode="over" position="end" [(opened)]="opened" fixedInViewport="true" autoFocus="false" class="sidenav-players">
+        <!-- bottom margin is set so that the last player name in list is visible above the Join Game card -->
+        <mat-card class="players-card nohover">
+        <mat-list role="list">
+        <!-- <h4 mat-header>Players</h4>    -->
+        <h3 mat-subheader>Players</h3>   
+        <!-- iterate through the userName0 array which is in onClickMe() in cards.component.ts to display userName for event -->
+            <div *ngFor="let name of userName0 let i = index">
+                <mat-list-item role="listitem">
+        <!-- submitName(name) will send the clicked name to the cards.component.ts so that it can be sent to mongoose for the updating the name -->
+            <!-- style="margin-bottom: 30px" prevents the last button of the players list from being cutoff by the container -->
+            <button style="margin-bottom: 30px" mat-button (click)=submitName(name)>{{name}}</button> 
+            </mat-list-item>
+            </div>
+        </mat-list>
+    </mat-card>
+
+    <!-- card for the join form and button no hover added to class to remove hover -->
+    
+        <!-- Displays username as hint when name is clicked in the players list -->
+       <mat-card class="add-player-card nohover">
+        <mat-form-field hintLabel= "{{hint}}">
+            <input matInput #input maxlength="17" autocomplete="off" placeholder="User Name" id="userNameUpdate" [(ngModel)]="userNameUpdate" name="userNameUpdate">
+        </mat-form-field>
+        <div class="buttonContainer">
+         <!-- buttons for add, delete update player     -->
+            <button type="submit" mat-icon-button matTooltip="Add" color="warn" (click)="addSubmit()"><mat-icon>add</mat-icon></button> 
+            <button type="submit" mat-icon-button matTooltip="Delete {{name}}" color="warn" (click)="deleteSubmit()"><mat-icon>clear</mat-icon></button> 
+            <button type="submit" mat-icon-button matTooltip="Update {{name}}" color="warn" (click)=updateSubmit()><mat-icon>cached</mat-icon></button>
+        </div>
+ 
+    <!-- </div> -->
+    </mat-card>
+    </mat-sidenav>
+    <!-- mode='over' prevents the sidenav from moving around the center content when opening. the [(opened)] variable is defined in card.component.ts. change to opened = "true" to have it start open 
+    the backdrop is set to false in the <mat-sidenav-container> tag. fixedInViewPort='true' prevents the sidenav bars from scrolling with rest of page  -->
+    <mat-sidenav #sidenav mode="over"  [(opened)]="opened" fixedInViewport="true" class="sidenav-left">
+        <!-- for some reason, no hover will not work if it ends with ';' -->
+        <mat-card class="side-card1 nohover">
+            <!-- data/time card on the sidenav panel. variables are defined in cards.component.ts -->
+            <mat-card-content>
+                <b>It is Currently:</b>
+                <p>{{ currentSeconds | date }}
+                <br>{{ currentSeconds | date: 'hh:mm:ss a' }}
+              </mat-card-content>
+        </mat-card> 
+<!-- This is for the game address side card. These variables are defined in the onClickMe() funcrtion in cards.component.ts -->
+        <mat-card class="side-card2 nohover">
+            <mat-card-content>
+                <b>Game Address:</b>
+                <p class="b">{{testCode}}{{gameLocation}}
+                <br>{{gameCity}} {{gameState}}
+                <br>{{gameZipCode}}
+            </mat-card-content>
+        </mat-card> 
+        <!-- google map -->
+        <div class="container-map">
+            <agm-map [zoom]="zoom" [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map> 
+        </div>     
+           
+    </mat-sidenav>
+    <!-- mat-side-nav content is where the main page content goes. Furthermore, content that is not in the sidenav panels. -->
+    <mat-sidenav-content>
+    <!-- set styling for center cards  -->
+    <div class="margin">
+    <!-- onClickMe(id) is defined in cards.component.ts. it will take the tournament.id on the card that is clicked and pass it to the function -->
+    <!-- iterate through the tournaments json objects defined in app.js -->
+        <mat-card (click)="[sidenav.open(), onClickMe(tournament._id)]" *ngFor ="let tournament of tournaments let i = index" class="card">
+            <mat-card-header>
+                <!-- the picture will show based on the event type.  -->
+                <div *ngIf="tournament.preferredSport === 'Basketball'"mat-card-avatar class="basketball"></div>
+                <div *ngIf="tournament.preferredSport === 'Baseball'"mat-card-avatar class="baseball"></div>
+                <div *ngIf="tournament.preferredSport === 'Soccer'"mat-card-avatar class="soccer"></div>
+                <div *ngIf="tournament.preferredSport === 'Hockey'"mat-card-avatar class="hockey"></div>
+                <div *ngIf="tournament.preferredSport === 'Football'"mat-card-avatar class="football"></div>
+                <div *ngIf="tournament.preferredSport === 'Frisbee'"mat-card-avatar class="frisbee"></div>
+                <div *ngIf="tournament.preferredSport === 'Tennis'"mat-card-avatar class="tennis"></div>
+                <div *ngIf="tournament.preferredSport === 'Golf'"mat-card-avatar class="golf"></div>
+                <!-- other information for the tournament card -->
+                <mat-card-title>{{tournament.eventTitle}}</mat-card-title>
+                <mat-card-subtitle>{{tournament.preferredSport}}</mat-card-subtitle>
+            </mat-card-header> 
+            <mat-card-content>
+                <b>Time: </b>{{tournament.time}}
+                <br>
+                <b>Date: </b>{{tournament.date}}
+                <br>
+                <b>Location: </b>{{tournament.city}}
+                <br>
+                <b>Description: </b>{{tournament.describeEvent}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+</div>
