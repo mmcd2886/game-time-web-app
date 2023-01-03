@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path dist"
+    "postinstall": "ng build --output-path dist",
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
   },
   "private": true,
   "dependencies": {
@@ -56,9 +58,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  },
-  "scripts": {
-   "start": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-   "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
- }
+  }
 }
